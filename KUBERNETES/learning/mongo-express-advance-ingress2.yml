@@ -1,0 +1,19 @@
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+    name: mongo-express-advance-subdomain
+spec:
+    rules:
+    - host: sub1.mongo-express2.com
+      http:
+        paths:
+          backend:
+            serviceName: mongo-express-service
+            servicePort: 8081
+    - host: sub2.mongo-express2.com
+      http:
+        paths:
+          backend:
+            serviceName: mongo-express-service
+            servicePort: 8081

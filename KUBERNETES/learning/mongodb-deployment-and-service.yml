@@ -1,0 +1,48 @@
+# This YAML exposes the fields defined in the UI. It can be edited directly or have new YAML pasted in.
+# Not all available Kubernetes properties are recognized by the form exposed in the UI, and unrecognized properties are ignored during import.
+# If the required properties are not supported by this step, the 'Deploy raw Kubernetes YAML' step can be used to deploy YAML directly to Kubernetes, and supports all properties.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment	
+  labels:
+    app: mongodb-deployment-label
+spec:
+  selector:
+    matchLabels:
+      app: mongodb-deployment-label
+  replicas: 1
+  template:
+    metadata:
+        labels:
+            app: mongodb-deployment-label
+    spec:
+        containers:
+        - name: mongodb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                    name: mongodb-secret
+                    key: root-username
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                    name: mongodb-secret
+                    key: root-password
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: mongodb-service
+spec:
+    selector: 
+        app: mongodb-deployment-label
+    ports:
+        - protocol: TCP
+          port: 27017
+          targetPort: 27017

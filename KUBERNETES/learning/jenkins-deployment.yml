@@ -1,0 +1,34 @@
+# This YAML exposes the fields defined in the UI. It can be edited directly or have new YAML pasted in.
+# Not all available Kubernetes properties are recognized by the form exposed in the UI, and unrecognized properties are ignored during import.
+# If the required properties are not supported by this step, the 'Deploy raw Kubernetes YAML' step can be used to deploy YAML directly to Kubernetes, and supports all properties.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment	
+  labels:
+    app: jenkins-deployment-label
+spec:
+  selector:
+    matchLabels:
+      app: jenkins-deployment-label
+  replicas: 1
+  template:
+    metadata:
+        labels:
+            app: jenkins-deployment-label
+    spec:
+        containers:
+        - name: jenkins
+          image: jenkinswithdocker/jenkinswithdocker:v1
+          ports:
+          - name: http-port
+            containerPort: 8080
+          - name: jnlp-port
+            containerPort: 50000
+          volumeMounts:
+          - name: jenkins-vol
+            mountPath: /var/jenkins_vol
+        volumes:
+          - name: jenkins-vol
+            persistentVolumeClaim:
+              claimName: jenkins-pvc

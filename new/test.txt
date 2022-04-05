@@ -1,0 +1,21 @@
+Commands:
+git config --global user.email "you@example.com"
+git config --global user.name "you@example.com"
+
+Git init - register directory to git
+Git add filename.txt - add files to git
+Git commit filename.txt - commit changes of fle to git
+Git status - check file status on directory
+Git commit . - commit all file
+Git add . - add all file
+Git log - check history
+Git checkout <commithash> - back to commit status
+
+Git branch - list branch
+Git branch branchname - create branch
+Git checkout branchname - change branch
+
+sync github to git local:
+git remote add upstream https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git
+git fetch upstream
+git merge upstream/master

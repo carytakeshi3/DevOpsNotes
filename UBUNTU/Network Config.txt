@@ -1,0 +1,11 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens3:
+      dhcp4: no
+      addresses:
+        - 172.19.238.70/20
+      gateway4: 172.19.224.1
+      nameservers:
+          addresses: [8.8.8.8, 8.8.4.4]

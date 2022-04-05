@@ -1,0 +1,8 @@
+1. Execute Secret or ConfigMap First
+2. Resuources (Deployment / Service / Ingress) communicates via Selector/Labels
+3. expose deployment/pod port using service (Internal Service)
+4. key: is environment variable - can get on container documentation
+5. MINIKUBE: assign service IP address : minikube service serviceName
+6. storage backend - local / nfs / aws / azure .etc
+7. ingress service > ingress class (annotation) > ingress controller
+8. PVC >> PV or PVC >> StorageClass >> PV
