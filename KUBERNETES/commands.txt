@@ -87,7 +87,10 @@ Content:
 }
 end:
 
+3. Cannot Connect to Cluster()
 
-
-
+export KUBECONFIG=/etc/kubernetes/admin.conf
+cp /etc/kubernetes/admin.conf $HOME/
+chown $(id -u):$(id -g) $HOME/admin.conf
+export KUBECONFIG=$HOME/admin.conf
 
