@@ -2,6 +2,8 @@ Commands:
 git config --global user.email "you@example.com"
 git config --global user.name "you@example.com"
 
+git commit . -m 'notes'
+
 Git init - register directory to git
 Git add filename.txt - add files to git
 Git commit filename.txt - commit changes of fle to git
